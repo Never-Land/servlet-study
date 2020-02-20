@@ -27,6 +27,14 @@
       <scope>test</scope>
     </dependency>
 
+    <!--Lombok包引入-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.12</version>
+      <scope>provided</scope>
+    </dependency>
+
     <!--apache commons包引入-->
     <dependency>
       <groupId>org.apache.commons</groupId>
