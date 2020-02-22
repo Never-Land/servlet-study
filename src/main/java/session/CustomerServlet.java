@@ -90,7 +90,7 @@ public class CustomerServlet extends HttpServlet {
         try {
             customerId = Integer.parseInt(request.getParameter("id"));
         }catch (NumberFormatException e){
-
+            //不处理
         }
         Customer customer = this.getCustomer(customerId);
         if(customer != null){
@@ -142,7 +142,7 @@ public class CustomerServlet extends HttpServlet {
         try {
             customerId = Integer.parseInt(request.getParameter("id"));
         }catch (NumberFormatException e){
-
+            //不处理
         }
         Customer customer = this.getCustomer(customerId);
         if(customer != null){
