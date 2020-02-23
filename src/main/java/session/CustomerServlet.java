@@ -104,9 +104,9 @@ public class CustomerServlet extends HttpServlet {
             writer.println("<input type = 'hidden' name = 'id' value = '" + customerId + "'/>");
             writer.println("<table>");
             writer.println("<tr><td>姓名:</td>");
-            writer.print("<td><input name = 'name' value = '" + customer.getName() + "'/><td></tr>");
+            writer.print("<td><input name = 'name' value = '" + customer.getName() + "'/></td></tr>");
             writer.println("<tr><td>地址:</td>");
-            writer.print("<td><input name = 'city' value = '" + customer.getCity() + "'/><td></tr>");
+            writer.print("<td><input name = 'city' value = '" + customer.getCity() + "'/></td></tr>");
             writer.println("<tr><td colspan = '2' style = 'text-align:right'>");
             writer.print("<input type = 'submit' value = '修改'/></td></tr>");
             writer.println("<tr><td colspan = '2'><a href = 'customer'>Customer List</a></td></tr>");
