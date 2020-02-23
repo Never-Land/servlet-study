@@ -1,7 +1,7 @@
 package session;
 
 import entity.Product;
-import entity.ShoppingItme;
+import entity.ShoppingItem;
 import org.apache.commons.collections4.CollectionUtils;
 
 import javax.servlet.ServletException;
@@ -128,17 +128,17 @@ public class ShoppingCartServlet extends HttpServlet {
         //获取商品
         Product product = this.getProduct(productId);
         //商品清单
-        ShoppingItme shoppingItme = new ShoppingItme();
-        shoppingItme.setProduct(product);
-        shoppingItme.setQuantity(quantity);
+        ShoppingItem shoppingItem = new ShoppingItem();
+        shoppingItem.setProduct(product);
+        shoppingItem.setQuantity(quantity);
 
         HttpSession session = request.getSession();
-        List<ShoppingItme> cartList = (List<ShoppingItme>) session.getAttribute(CART_ATTRIBUTE);
+        List<ShoppingItem> cartList = (List<ShoppingItem>) session.getAttribute(CART_ATTRIBUTE);
         if(CollectionUtils.isEmpty(cartList)){
             cartList = new ArrayList<>();
             session.setAttribute(CART_ATTRIBUTE, cartList);
         }
-        cartList.add(shoppingItme);
+        cartList.add(shoppingItem);
         this.sendProductList(response);
     }
 
@@ -224,7 +224,7 @@ public class ShoppingCartServlet extends HttpServlet {
         writer.println("<body>");
         writer.println("<a href = 'products'>Product List</a>");
         HttpSession session = request.getSession();
-        List<ShoppingItme> cartList = (List<ShoppingItme>) session.getAttribute(CART_ATTRIBUTE);
+        List<ShoppingItem> cartList = (List<ShoppingItem>) session.getAttribute(CART_ATTRIBUTE);
         if(CollectionUtils.isNotEmpty(cartList)){
             writer.println("<table>");
             writer.println("<tr><td style = 'width:150px'>商品</td>");
@@ -233,9 +233,9 @@ public class ShoppingCartServlet extends HttpServlet {
             writer.println("<td>总价</td></tr>");
             double total = 0.0D;
             //商品列表
-            for(ShoppingItme shoppingItme : cartList){
-                Product product = shoppingItme.getProduct();
-                int quantity = shoppingItme.getQuantity();
+            for(ShoppingItem shoppingItem : cartList){
+                Product product = shoppingItem.getProduct();
+                int quantity = shoppingItem.getQuantity();
                 if(quantity != 0){
                     BigDecimal price = product.getPrice();
                     writer.println("<tr>");

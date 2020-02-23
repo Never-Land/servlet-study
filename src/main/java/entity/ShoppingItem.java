@@ -12,7 +12,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor
-public class ShoppingItme {
+public class ShoppingItem {
     /**
      * 商品
      */
