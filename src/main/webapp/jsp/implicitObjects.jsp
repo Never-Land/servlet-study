@@ -1,6 +1,10 @@
-<%@ page import="java.util.Enumeration" %>
 <!--Jsp隐式对象演示-->
+<!--
+    page指令中有contentType、pageEncoding属性时必须放所有的模板数据
+之前,因为必须在发送之前设置内容类型和字符编码
+-->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.Enumeration" %>
 <html>
 <head>
     <title>Jsp隐式对象演示</title>
