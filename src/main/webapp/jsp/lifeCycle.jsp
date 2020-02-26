@@ -23,11 +23,10 @@
     <title>Life Cycle</title>
 </head>
 <body>
-    继承并且覆盖Jsp中的jspInit和jspDestroy
-
+    继承并且覆盖Jsp中的jspInit和jspDestroy<br/>
     <%
         variable = "定义" + variable;
-        out.println("输出jsp中定义的变量:" + variable);
+        out.println("输出Jsp:" + variable);
     %>
 </body>
 </html>
