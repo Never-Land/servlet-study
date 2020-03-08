@@ -3,7 +3,9 @@ package controller;
 import action.ProductAction;
 import entity.Product;
 import form.ProductForm;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import validator.ProductValidator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * MVC的模式是一个应用程序.
@@ -48,8 +51,10 @@ public class ControllerServlet extends HttpServlet {
         String uri = request.getRequestURI();
         int lastIndex = uri.lastIndexOf("/");
         String actionName = uri.substring(lastIndex + 1);
+        String dispatchUrl = "";
+
         if(actionName.equals("productAdd")){
-            //not deal with
+            dispatchUrl = "/jsp/productForm.jsp";
         }else if(actionName.equals("productSave")){
             //创建页面信息实例
             ProductForm productForm = new ProductForm();
@@ -57,31 +62,34 @@ public class ControllerServlet extends HttpServlet {
             productForm.setDescription(request.getParameter("description"));
             productForm.setPrice(request.getParameter("price"));
 
-            //创建商品实例(可以考虑有API提供的实例复制方法???)
-            Product product = new Product();
-            product.setName(productForm.getName());
-            product.setDescription(productForm.getDescription());
-            try {
-                product.setPrice(BigDecimal.valueOf(Double.parseDouble(productForm.getPrice())));
-            }catch(NumberFormatException e){
-                //not deal with
+            //检验页面输入的商品信息
+            ProductValidator validator = new ProductValidator();
+            List<String> errorList = validator.validateProduct(productForm);
+            if(CollectionUtils.isEmpty(errorList)){
+                //创建商品实例(可以考虑有API提供的实例复制方法???)
+                Product product = new Product();
+                product.setName(productForm.getName());
+                product.setDescription(productForm.getDescription());
+                try {
+                    product.setPrice(BigDecimal.valueOf(Double.parseDouble(productForm.getPrice())));
+                }catch(NumberFormatException e){
+                    //not deal with
+                }
+
+                //业务逻辑处理
+                ProductAction productAction = new ProductAction();
+                productAction.saveProduct(product);
+
+                //把商品信息放到域中供页面获取数据显示
+                request.setAttribute("product", product);
+                dispatchUrl = "/jsp/productDetails.jsp";
+            }else{
+                request.setAttribute("errorList", errorList);
+                request.setAttribute("productForm", productForm);
+                dispatchUrl = "/jsp/productForm.jsp";
             }
-
-            //业务逻辑处理
-            ProductAction productAction = new ProductAction();
-            productAction.saveProduct(product);
-
-            //把商品信息放到域中供页面获取数据显示
-            request.setAttribute("product", product);
         }
-
-        String dispatchUrl = "";
         //返回页面
-        if(actionName.equals("productAdd")){
-            dispatchUrl = "/jsp/productForm.jsp";
-        }else if(actionName.equals("productSave")){
-            dispatchUrl = "/jsp/productDetails.jsp";
-        }
         if(StringUtils.isNotEmpty(dispatchUrl)){
             RequestDispatcher dispatcher = request.getRequestDispatcher(dispatchUrl);
             dispatcher.forward(request, response);
