@@ -1,29 +1,22 @@
-package entity;
+package form;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-
 /**
- * 商品实例
+ * 商品信息与页面进行交互的实例
  */
-@Setter
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
-public class Product implements Serializable {
-    /**
-     * 序列化号
-     */
-    private static final long serialVersionUID = 2601865709190134387L;
+public class ProductForm {
     /**
      * 商品ID
      */
-    private Integer id;
+    private String id;
     /**
      * 商品名称
      */
@@ -35,5 +28,5 @@ public class Product implements Serializable {
     /**
      * 商品单价
      */
-    private BigDecimal price;
+    private String price;
 }
