@@ -17,6 +17,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <druid-version>1.1.21</druid-version>
   </properties>
 
   <dependencies>
@@ -76,6 +77,19 @@
         </exclusions>
     </dependency>
 
+    <!--MySQL数据库驱动包引入-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.19</version>
+    </dependency>
+
+    <!--Druid数据库连接池包引入-->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>${druid-version}</version>
+    </dependency>
   </dependencies>
 
   <build>
