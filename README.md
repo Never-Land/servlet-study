@@ -48,4 +48,4 @@ MySQl-8.0.19版本连接数据库设置遇到问题
 java.sql.SQLException: The server time zone value '�й���׼ʱ��' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the 'serverTimezone' configuration property) to use a more specifc time zone value if you want to utilize time zone support.
 如果设置为其他的值会出现时差
 数据库以下参数需配置
-useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=Asia/Shanghai
+useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=Asia/Shanghai

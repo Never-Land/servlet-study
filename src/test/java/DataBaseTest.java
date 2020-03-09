@@ -19,7 +19,7 @@ public class DataBaseTest {
         //连接数据库
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/servlet_study?user=test&password=test" +
-                    "&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai");
+                    "&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai");
         } catch (SQLException e) {
             System.out.println("创建数据库连接失败");
             e.printStackTrace();
