@@ -23,7 +23,7 @@ import java.util.List;
  * 可以在页面显示商品信息,在页面保存商品信息时,对页面信息需要进行
  * 检验(验证器)
  */
-@WebServlet(name = "ControllerServlet", urlPatterns = {"/productAdd", "/productSave"})
+@WebServlet(name = "ControllerServlet", urlPatterns = {"/productAdd", "/productSave", "/productList", "/productDetails"})
 public class ControllerServlet extends HttpServlet {
     /**
      * 序列化号
@@ -88,6 +88,17 @@ public class ControllerServlet extends HttpServlet {
                 request.setAttribute("productForm", productForm);
                 dispatchUrl = "/jsp/productForm.jsp";
             }
+        }else if(actionName.equals("productList") || StringUtils.isEmpty(actionName)){
+            ProductAction productAction = new ProductAction();
+            List<Product> productList = productAction.getProductList();
+            request.setAttribute("productList", productList);
+            dispatchUrl = "/jsp/productList.jsp";
+        }else if(actionName.equals("productDetails")){
+            ProductAction productAction = new ProductAction();
+            String  productId = request.getParameter("productId");
+            Product product = productAction.getProductDetails(Integer.valueOf(productId));
+            request.setAttribute("product", product);
+            dispatchUrl = "/jsp/productDetails.jsp";
         }
         //返回页面
         if(StringUtils.isNotEmpty(dispatchUrl)){

@@ -35,6 +35,9 @@
                     <td><input type="reset" value="重置"></td>
                     <td><input type="submit" value="添加"/></td>
                 </tr>
+                <tr>
+                    <td colspan="2"><a href="productList">商品列表</a></td>
+                </tr>
             </table>
         </form>
     </div>

@@ -6,12 +6,12 @@
 <body>
     <div id="global">
         <h4>商品保存成功,详情如下:</h4>
-        <input type="hidden" name="id" value="${product.id}"/>
         <p>
             商品名称:${product.name}<br/>
             商品描述:${product.description}<br/>
             商品价格:￥${product.price}<br/>
         </p>
+        <a href="productList">商品列表</a>
     </div>
 </body>
 </html>
